@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: favourite-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: favourite-service
+  template:
+    metadata:
+      labels:
+        app: favourite-service
+    spec:
+      containers:
+        - name: favourite-service
+          image: javaexpress/favourite-service:latest
+          ports:
+          - containerPort: 9090
+          env:
+          - name: DB_HOST
+            value: favourite-database-service
+          - name: DB_NAME
+            value: favouritedb
+          - name: DB_USERNAME
+            value: root
+          - name: DB_PASSWORD
+            value: root
+          - name: SPRING_APPLICATION_NAME
+            value: favourite-service
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud
+          - name: EUREKA_SERVER
+            value: eureka-service
+          - name: ZIPKIN_SERVER
+            value: zipkin-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: favourite-service-api
+spec:
+  selector:
+    app: favourite-service
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 9096
+      targetPort: 9090

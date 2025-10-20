@@ -1,0 +1,1206 @@
+{
+	"info": {
+		"_postman_id": "32e8fd56-c3b9-4d0c-8d69-3b64461ca87a",
+		"name": "ECommerce_38",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2482338",
+		"_collection_link": "https://blue-satellite-7872-1.postman.co/workspace/Ecommerce-Latest~98f567c7-f5d8-4de3-a181-c1d6e3879729/collection/2482338-32e8fd56-c3b9-4d0c-8d69-3b64461ca87a?action=share&source=collection_link&creator=2482338"
+	},
+	"item": [
+		{
+			"name": "user-service",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"vijay\",\r\n    \"lastName\": \"John\",\r\n    \"email\": \"vijay12@gmail.com\",\r\n    \"phone\": \"9876543245\",\r\n    \"credential\": {\r\n        \"username\": \"vijay12\",\r\n        \"password\": \"123456\",\r\n        \"roleBasedAuthrority\": \"ROLE_USER\",\r\n        \"isEnabled\": true,\r\n        \"isAccountNonExpired\": true,\r\n        \"isAccountNonLocked\": true,\r\n        \"isCredentailsNonExpired\": true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 2,\r\n    \"firstName\": \"rakesh1\",\r\n    \"lastName\": \"rakesh john\",\r\n    \"email\": \"rakesh1@gmail.com\",\r\n    \"phone\": \"9876543245\",\r\n    \"credential\": {\r\n        \"credentailId\" : 2,\r\n        \"username\": \"rakesh\",\r\n        \"password\": \"123456\",\r\n        \"roleBasedAuthority\": \"ROLE_USER\",\r\n        \"isEnabled\": true,\r\n        \"isAccountNonExpired\": true,\r\n        \"isAccountNonLocked\": true,\r\n        \"isCredentailsNonExpired\": true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Username by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/users/username/rakesh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users",
+								"username",
+								"rakesh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product-service",
+			"item": [
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "Create Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productTitle\" : \"Iphone 13R\",\r\n    \"sku\" : \"54d3234v\",\r\n    \"priceUnit\" : 78000,\r\n    \"quantity\": 20,\r\n    \"category\" : {\r\n        \"categoryId\" : 5\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8067/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8067",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create Parent Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Mi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8067/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8067",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create SubCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Elecotnics 1\",\r\n    \"parentCategory\" : {\r\n        \"categoryId\" : 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8067/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8067",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create SubCategory Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Elecotnics 7\",\r\n    \"subCategories\" : [\r\n        {\r\n            \"categoryTitle\" : \"Laptop 7\"\r\n        }\r\n        ,\r\n        {\r\n            \"categoryTitle\" : \"Mobile 7\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8067/api/categories/parent-with-subcategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8067",
+							"path": [
+								"api",
+								"categories",
+								"parent-with-subcategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Elecotnics 7\",\r\n    \"subCategories\" : [\r\n        {\r\n            \"categoryTitle\" : \"Laptop 7\"\r\n        }\r\n        ,\r\n        {\r\n            \"categoryTitle\" : \"Mobile 7\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8067/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8067",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order-service",
+			"item": [
+				{
+					"name": "cart",
+					"item": [
+						{
+							"name": "Fetch Cart Information",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8086/api/carts/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"carts",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0_create Cart Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "0_create Cart Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/carts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"carts"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "1_create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\" : 2,\r\n    \"orderDesc\": \"Order Information for  mobiles\",\r\n    \"orderFee\" : 2500,\r\n    \"cart\" : {\r\n        \"cartId\" : 2\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1_create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\" : 3,\r\n    \"orderDesc\": \"Order Information for  mobiles\",\r\n    \"orderFee\" : 150,\r\n    \"cart\" : {\r\n        \"cartId\" : 1\r\n    }\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "1_create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\" : 2,\r\n    \"orderDesc\": \"Order Information for  mobiles\",\r\n    \"orderFee\" : 2500,\r\n    \"cart\" : {\r\n        \"cartId\" : 2\r\n    }\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8086/api/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8086",
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Fetch Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/orders/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"orders",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment-service",
+			"item": [
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isPayed\" : true,\r\n    \"paymentStatus\" : \"COMPLETED\",\r\n    \"order\" : {\r\n        \"orderId\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8087/api/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/api/payments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"payments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favourite-service",
+			"item": [
+				{
+					"name": "Create Favourite Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 3,\r\n    \"productId\": 1,\r\n    \"likedDate\" : \"10-12-2024__08:40:23:235456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/favourites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"favourites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shipping-service",
+			"item": [
+				{
+					"name": "Create Order-Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 1,\r\n    \"productId\": 1,\r\n    \"orderQuantity\" : 2\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9091/api/order-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9091",
+							"path": [
+								"api",
+								"order-items"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "audit-service",
+			"item": [
+				{
+					"name": "Create Audit Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceName\" : \"product-service\",\r\n    \"action\" : \"product-created\",\r\n    \"userId\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/audits/log",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8093",
+							"path": [
+								"api",
+								"audits",
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Audit Logs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceName\" : \"order-service\",\r\n    \"action\" : \"order-created\",\r\n    \"userId\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/audits/logs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8093",
+							"path": [
+								"api",
+								"audits",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api-gateway",
+			"item": [
+				{
+					"name": "0_Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"abc\",\r\n    \"lastName\": \"M\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"phone\": \"8559878545\",\r\n    \"credential\": {\r\n        \"username\": \"abc\",\r\n        \"password\": \"12345\",\r\n        \"roleBasedAuthrority\": \"ROLE_USER\",\r\n        \"isEnabled\": true,\r\n        \"isAccountNonExpired\": true,\r\n        \"isAccountNonLocked\": true,\r\n        \"isCredentailsNonExpired\": true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/user-service/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"user-service",
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "0_Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"shilpa\",\r\n    \"lastName\": \"M\",\r\n    \"email\": \"shilpa@gmail.com\",\r\n    \"phone\": \"8559878545\",\r\n    \"credential\": {\r\n        \"username\": \"shilpa456\",\r\n        \"password\": \"12345\",\r\n        \"roleBasedAuthrority\": \"ROLE_USER\",\r\n        \"isEnabled\": true,\r\n        \"isAccountNonExpired\": true,\r\n        \"isAccountNonLocked\": true,\r\n        \"isCredentailsNonExpired\": true\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8767/javaexpress/user-service/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8767",
+									"path": [
+										"javaexpress",
+										"user-service",
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "1_Create_Parent_Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Earphones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/product-service/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"product-service",
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2_Create_Sub_Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Mi EarBuds\",\r\n    \"parentCategory\" : {\r\n        \"categoryId\" : 30\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/product-service/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"product-service",
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3_Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productTitle\" : \"Iphone 13R\",\r\n    \"sku\" : \"54d3234v\",\r\n    \"priceUnit\" : 78000,\r\n    \"quantity\": 20,\r\n    \"category\" : {\r\n        \"categoryId\" : 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/product-service/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"product-service",
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productTitle\" : \"Mi EarBud 453 Model\",\r\n    \"sku\" : \"34fdgfs\",\r\n    \"priceUnit\" : 499,\r\n    \"quantity\": 30,\r\n    \"category\" : {\r\n        \"categoryId\" : 31\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8767/javaexpress/product-service/api/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8767",
+									"path": [
+										"javaexpress",
+										"product-service",
+										"api",
+										"products"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "4_cart_Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/order-service/api/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"order-service",
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5_order_creation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\" : 13,\r\n    \"orderDesc\": \"Order Information for  earphones\",\r\n    \"orderFee\" : 499,\r\n    \"cart\" : {\r\n        \"cartId\" :5\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/order-service/api/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"order-service",
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6_payment_request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isPayed\" : true,\r\n    \"paymentStatus\" : \"COMPLETED\",\r\n    \"order\" : {\r\n        \"orderId\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/payment-service/api/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"payment-service",
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8087/api/payments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"payments",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8087/api/payments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"payments",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "7_Create_order_item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\": 6,\r\n    \"productId\": 5,\r\n    \"orderQuantity\" : 2\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/shipping-service/api/order-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"shipping-service",
+								"api",
+								"order-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8_favourite_ms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 12,\r\n    \"productId\": 4,\r\n    \"likedDate\" : \"15-12-2024__08:40:23:235456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/favourite-service/api/favourites",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"favourite-service",
+								"api",
+								"favourites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Cart Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/order-service/api/carts/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"order-service",
+								"api",
+								"carts",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Payment Information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8767/javaexpress/payment-service/api/payments/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8767",
+							"path": [
+								"javaexpress",
+								"payment-service",
+								"api",
+								"payments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proxy-client",
+			"item": [
+				{
+					"name": "Proxy User Creation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"vijay\",\r\n    \"lastName\": \"John\",\r\n    \"email\": \"1vijay143@gmail.com\",\r\n    \"phone\": \"9876543245\",\r\n    \"credential\": {\r\n        \"username\": \"1vijay123\",\r\n        \"password\": \"12345632\",\r\n        \"roleBasedAuthrority\": \"ROLE_ADMIN\",\r\n        \"isEnabled\": true,\r\n        \"isAccountNonExpired\": true,\r\n        \"isAccountNonLocked\": true,\r\n        \"isCredentailsNonExpired\": true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proxy Create Parent Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\" : \"Mi Earphones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8091/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8091",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

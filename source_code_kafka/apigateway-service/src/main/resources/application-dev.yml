@@ -1,0 +1,98 @@
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+      routes:
+      - id: USER-MS
+        predicates:
+        - Path=/javaexpress/user-service/**
+        uri: lb://USER-SERVICE
+        filters:
+        - RewritePath=/javaexpress/user-service/(?<segment>.*), /$\{segment}
+        - name: CircuitBreaker
+          args:
+            name: userCircuitBreaker
+            fallbackUri: forward:/contactSupport        
+      - id: PRODUCT-MS
+        predicates:
+        - Path=/javaexpress/product-service/**
+        uri: lb://PRODUCT-SERVICE
+        filters:
+        - RewritePath=/javaexpress/product-service/(?<segment>.*), /$\{segment} 
+        - name: CircuitBreaker
+          args:
+            name: productCircuitBreaker
+            fallbackUri: forward:/contactSupport
+      - id: ORDER-MS
+        predicates:
+        - Path=/javaexpress/order-service/**
+        uri: lb://ORDER-SERVICE
+        filters:
+        - RewritePath=/javaexpress/order-service/(?<segment>.*), /$\{segment}    
+      - id: PAYEMNT-MS
+        predicates:
+        - Path=/javaexpress/payment-service/**
+        uri: lb://PAYMENT-SERVICE
+        filters:
+        - RewritePath=/javaexpress/payment-service/(?<segment>.*), /$\{segment} 
+      - id: SHIIPING-MS
+        predicates:
+        - Path=/javaexpress/shipping-service/**
+        uri: lb://SHIPPING-SERVICE
+        filters:
+        - RewritePath=/javaexpress/shipping-service/(?<segment>.*), /$\{segment}    
+      - id: FAVOURITE-MS
+        predicates:
+        - Path=/javaexpress/favourite-service/**
+        uri: lb://FAVOURITE-SERVICE
+        filters:
+        - RewritePath=/javaexpress/favourite-service/(?<segment>.*), /$\{segment} 
+      - id: PROXY-CLIENT
+        predicates:
+        - Path=/javaexpress/proxy-client/**
+        uri: lb://PROXY-CLIENT
+        filters:
+        - RewritePath=/javaexpress/proxy-client/(?<segment>.*), /$\{segment}                                         
+        
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      discovery:
+        enabled: true
+      exposure:
+        include: '*'
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true 
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 5
+        permitted-number-of-calls-in-half-open-state: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        automatic-transition-from-open-to-half-open-enabled: true

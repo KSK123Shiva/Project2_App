@@ -1,0 +1,50 @@
+kubeconfig file-
+-----------------
+
+kubectl apply -f 0_zipkin.yml
+ 
+kubectl get deployments
+kubectl get svc
+kubectl get rs
+kubectl logs -f zipkin-deployment-84dcd4b776-49xlp
+
+kubectl get pv
+kubectl get pvc
+
+kubectl delete svc <service-name>
+kubectl delete deployment order-service-deployment
+kubectl delete pod zipkin-deployment-84dcd4b776-6c976
+
+Create Kubernetes Dashboard
+---------------------------
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
+Create a Service Account and Cluster Role Binding
+kubectl apply -f dashboard-adminuser.yaml
+
+Get the Bearer Token
+kubectl create token admin-user -n kubernetes-dashboard
+
+eyJhbGciOiJSUzI1NiIsImtpZCI6IkU1MTFIOWpac2tTd2pCTWdkdHJ5YmhjNk9vdzdLdjFjY2pBMXVvTzRkdlUifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzIxNzM1NTA0LCJpYXQiOjE3MjE3MzE5MDQsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiMmQzYTJiNTgtMjMyZS00YjkwLTg5YzktMDA4Yzk1OTg4ZmJkIn19LCJuYmYiOjE3MjE3MzE5MDQsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.dv_tMIdRoHfaF9KrFQEqd1e-PDw0HONUQjBod6ksMK8nnt2CidhBqd9CAAKZHd53jmr6xkzdb3n57qRZjwPfzN8hUOxSMtskbd1rSV1fbUiA4Ip8__6Jwx1TUpHW2b_S5V0qTrJCTt4B7whLuahUOW3pCFpmXUqPWxa7P5xkxdHP3Qa3VI42uZRjhRX0Abm8XBsvM2wUmLes_JbOB3S93O6rfqlh4YHZJVM5U4Enx0uy5t-QB_s053i-cw90oq67MCAtUpJuZiRfaDLf0ZZXvb-JsiqRQF2V-IF0o3pOsqMd-I6gvY99uJwpNQ-A-ZhU-VM2Xleq-nQfAv2StsLHbg
+
+Expose the Dashboard Using Port Forwarding
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 9878:443
+
+Verify the Dashboard URL
+https://localhost:9878
+
+Monitoring Tools
+-----------------
+
+Verify status of application health
+http://localhost:9090/targets
+
+Dashboard ULR 
+https://grafana.com/grafana/dashboards/11378
+
+
+
+
+
+
+

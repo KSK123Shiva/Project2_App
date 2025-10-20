@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+        - name: payment-service
+          image: javaexpress/payment-service:latest
+          ports:
+          - containerPort: 8087
+          env:
+          - name: DB_HOST
+            value: payment-database-service
+          - name: DB_NAME
+            value: paymentdb
+          - name: DB_USERNAME
+            value: root
+          - name: DB_PASSWORD
+            value: root
+          - name: SPRING_APPLICATION_NAME
+            value: payment-service
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud
+          - name: EUREKA_SERVER
+            value: eureka-service
+          - name: ZIPKIN_SERVER
+            value: zipkin-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-service-api
+spec:
+  selector:
+    app: payment-service
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8087
+      targetPort: 8087

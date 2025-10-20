@@ -1,0 +1,49 @@
+mvn clean install
+
+docker build -t javaexpress/user-service:latest .
+
+docker build -t javaexpress/product-service:latest .
+
+docker build -t javaexpress/shipping-service:latest .
+
+docker build -t javaexpress/payment-service:latest .
+
+docker build -t javaexpress/favourite-service:latest .
+
+docker build -t javaexpress/order-service:latest .
+
+docker build -t javaexpress/eurekaserver-service:latest .
+
+docker build -t javaexpress/audit-service:latest .
+
+docker build -t javaexpress/apigateway-service:latest .
+
+Push Images to Docker Hub
+-------------------------
+docker login
+	username
+	password
+
+docker push javaexpress/user-service:latest
+docker push javaexpress/product-service:latest
+docker push javaexpress/shipping-service:latest
+docker push javaexpress/payment-service:latest
+docker push javaexpress/order-service:latest
+docker push javaexpress/favourite-service:latest
+docker push javaexpress/eurekaserver-service:latest
+docker push javaexpress/audit-service:latest
+docker push javaexpress/apigateway-service:latest
+
+Pull Docker Images into your local
+-----------------------------------
+docker pull javaexpress/user-service:latest
+docker pull javaexpress/product-service:latest
+docker pull javaexpress/shipping-service:latest
+docker pull javaexpress/payment-service:latest
+docker pull javaexpress/order-service:latest
+docker pull javaexpress/favourite-service:latest
+docker pull javaexpress/eurekaserver-service:latest
+docker pull javaexpress/audit-service:latest
+docker pull javaexpress/apigateway-service:latest
+
+

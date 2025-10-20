@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shipping-mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-database-deployment # Updated Deployment name for clarity
+spec:
+  selector: 
+    matchLabels:  # Mandatory for Deployment
+      app: shipping-database # Updated pod label for clarity
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: 
+        app: shipping-database # Updated pod label for clarity
+    spec:
+      containers:
+        - image: mysql:5.7
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: shippingdb
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: shipping-mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-database-service # Changed the service hostname to a custom name
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:  # Mandatory for Service
+    app: shipping-database # Updated to match pod label
+  type: ClusterIP

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audit-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: audit-service
+  template:
+    metadata:
+      labels:
+        app: audit-service
+    spec:
+      containers:
+        - name: audit-service
+          image: javaexpress/audit-service:latest # Replace with your Audit-Service image
+          ports:
+            - containerPort: 8093 # Audit-Service runs on port 8080
+          env:
+            - name: DB_HOST
+              value: audit-mongodb-service # MongoDB service name
+            - name: DB_PORT
+              value: "27017" # MongoDB port inside the cluster
+            - name: DB_NAME
+              value: auditdb # Database name for Audit-Service           
+            - name: DB_USERNAME
+              value: root # MongoDB root username
+            - name: DB_PASSWORD
+              value: rootpassword # MongoDB root password
+            - name: SPRING_APPLICATION_NAME
+              value: audit-service
+            - name: SPRING_PROFILES_ACTIVE
+              value: cloud
+            - name: EUREKA_SERVER
+              value: eureka-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: audit-service-api
+  labels:
+    app: audit-service
+spec:
+  selector:
+    app: audit-service
+  type: LoadBalancer # Expose the service to the external world
+  ports:
+    - protocol: TCP
+      port: 8093 # Exposed port
+      targetPort: 8093 # Port used by the Audit-Service container

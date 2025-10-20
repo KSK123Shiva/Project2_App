@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: javaexpress/order-service:latest
+          ports:
+          - containerPort: 8086
+          env:
+          - name: DB_HOST
+            value: order-database-service
+          - name: DB_NAME
+            value: orderdb
+          - name: DB_USERNAME
+            value: root
+          - name: DB_PASSWORD
+            value: root            
+          - name: SPRING_APPLICATION_NAME
+            value: order-service
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud
+          - name: EUREKA_SERVER
+            value: eureka-service
+          - name: ZIPKIN_SERVER
+            value: zipkin-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service-api
+spec:
+  selector:
+    app: order-service
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086

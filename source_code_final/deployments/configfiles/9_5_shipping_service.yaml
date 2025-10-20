@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-service
+  template:
+    metadata:
+      labels:
+        app: shipping-service
+    spec:
+      containers:
+        - name: shipping-service
+          image: javaexpress/shipping-service:latest
+          ports:
+          - containerPort: 8090
+          env:
+          - name: DB_HOST
+            value: shipping-database-service
+          - name: DB_NAME
+            value: shippingdb
+          - name: DB_USERNAME
+            value: root
+          - name: DB_PASSWORD
+            value: root
+          - name: SPRING_APPLICATION_NAME
+            value: shipping-service
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud
+          - name: EUREKA_SERVER
+            value: eureka-service
+          - name: ZIPKIN_SERVER
+            value: zipkin-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-service-api
+spec:
+  selector:
+    app: shipping-service
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090

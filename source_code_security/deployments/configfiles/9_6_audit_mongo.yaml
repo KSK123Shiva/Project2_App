@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: audit-mongodb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audit-mongodb-deployment
+spec:
+  selector: 
+    matchLabels:  
+      app: audit-mongodb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels: 
+        app: audit-mongodb
+    spec:
+      containers:
+        - image: mongo:6.0 # MongoDB image
+          name: mongodb
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: auditdb # Default database name
+          ports:
+            - containerPort: 27017
+              name: mongodb
+          volumeMounts:
+            - name: mongodb-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-persistent-storage
+          persistentVolumeClaim:
+            claimName: audit-mongodb-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: audit-mongodb-service
+spec:
+  type: LoadBalancer # Expose the service using a LoadBalancer
+  ports:
+    - port: 27017        # Port exposed externally
+      targetPort: 27017  # Internal MongoDB container port
+  selector:  
+    app: audit-mongodb

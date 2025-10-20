@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy-client-deployment
+  labels:
+    app: proxy-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxy-client
+  template:
+    metadata:
+      labels:
+        app: proxy-client
+    spec:
+      containers:
+        - name: proxy-client
+          image: javaexpress/proxy-client:latest
+          ports:
+          - containerPort: 8091
+          env:
+          - name: SPRING_APPLICATION_NAME
+            value: proxy-client
+          - name: SPRING_PROFILES_ACTIVE
+            value: cloud
+          - name: EUREKA_SERVER
+            value: eureka-service
+          - name: ZIPKIN_SERVER
+            value: zipkin-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-client-api
+  labels:
+    app: proxy-client
+spec:
+  selector:
+    app: proxy-client
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8091
